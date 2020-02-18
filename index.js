@@ -1,13 +1,13 @@
 
-module.exports.load = function(seed){
+module.exports.load = function(seed, callback){
 //        const edfs = require("edfs").attachFromSeed(seed);
     const se = require("swarm-engine");
     se.initialise();
     //TODO: maybe we should get the boot script from the same csb? :-?
     const pathName = "path";
     const path = require(pathName);
-    const powerCord = se.OuterThreadPowerCord(path.join(__dirname, "../../modules/swarm-engine/bootScripts/ThreadWorkerBootScript"), false, seed);
-    $$.swarmEngine.plug(se.prototype.WILD_CARD_IDENTITY, powerCord);
+    const powerCord = se.OuterThreadPowerCord(path.join(process.env.PSK_ROOT_INSTALATION_FOLDER, "psknode/bundles/threadBoot.js"), false, seed);
+    $$.swarmEngine.plug("*", powerCord);
 
     const handler = {
         attachTo : $$.interactions.attachTo,
@@ -16,6 +16,9 @@ module.exports.load = function(seed){
             return $$.interactions.startSwarmAs("anonymous", swarmTypeName, phaseName, ...args);
         }
     };
-
-    return handler;
+    //return handler;
+    //todo implement a way to know when thread is ready
+    setTimeout(()=>{
+        callback(undefined, handler);
+    }, 1000);
 };
