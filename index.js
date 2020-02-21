@@ -11,9 +11,9 @@ module.exports.load = function(seed, identity, callback){
 
     const handler = {
         attachTo : $$.interactions.attachTo,
-        startTransaction : function (swarmTypeName, phaseName, ...args) {
+        startTransaction : function (transactionTypeName, methodName, ...args) {
             //todo: get identity from context somehow
-            return $$.interactions.startSwarmAs("identityName", swarmTypeName, phaseName, ...args);
+            return $$.interactions.startSwarmAs("identityName", "transactionHandler", "start", identity, transactionTypeName, methodName, ...args);
         }
     };
     //return handler;
