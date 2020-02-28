@@ -4,7 +4,7 @@ se.initialise();
 module.exports.load = function(seed, identity, callback){
     const pathName = "path";
     const path = require(pathName);
-    const powerCord = se.OuterThreadPowerCord(path.join(process.env.PSK_ROOT_INSTALATION_FOLDER, "psknode/bundles/threadBoot.js"), false, seed);
+    const powerCord = new se.OuterThreadPowerCord(path.join(process.env.PSK_ROOT_INSTALATION_FOLDER, "psknode/bundles/threadBoot.js"), false, seed);
 
     let cord_identity;
     try{
