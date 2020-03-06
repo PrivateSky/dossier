@@ -14,16 +14,21 @@ module.exports.load = function(seed, identity, callback){
     }catch(err){
         return callback(err);
     }
-
-    const handler = {
-        attachTo : $$.interactions.attachTo,
-        startTransaction : function (transactionTypeName, methodName, ...args) {
-            //todo: get identity from context somehow
-            return $$.interactions.startSwarmAs(cord_identity, "transactionHandler", "start", identity, transactionTypeName, methodName, ...args);
+    $$.interactions.startSwarmAs(cord_identity, "transactionHandler", "start", identity, "TooShortBlockChainWorkaroundDeleteThis", "add").onReturn(err => {
+        if (err) {
+            return callback(err);
         }
-    };
-    //todo implement a way to know when thread is ready
-    setTimeout(()=>{
-        callback(undefined, handler);
-    }, 100);
+
+        const handler = {
+            attachTo : $$.interactions.attachTo,
+            startTransaction : function (transactionTypeName, methodName, ...args) {
+                //todo: get identity from context somehow
+                return $$.interactions.startSwarmAs(cord_identity, "transactionHandler", "start", identity, transactionTypeName, methodName, ...args);
+            }
+        };
+        //todo implement a way to know when thread is ready
+        setTimeout(()=>{
+            callback(undefined, handler);
+        }, 100);
+    });
 };
