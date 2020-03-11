@@ -1,5 +1,7 @@
 const se = require("swarm-engine");
-se.initialise();
+if(typeof $$ === "undefined" || typeof $$.swarmEngine === "undefined"){
+    se.initialise();
+}
 
 module.exports.load = function(seed, identity, callback){
     const pathName = "path";
