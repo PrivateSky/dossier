@@ -51,3 +51,5 @@ module.exports.load = function(seed, identity, callback){
             return callback(new Error(`Dossier can not be loaded in <${$$.environmentType}> environment type for now!`));
     }
 }
+
+module.exports.RawDossier = require("./lib/RawDossier");
