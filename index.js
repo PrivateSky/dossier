@@ -1,8 +1,3 @@
-const se = require("swarm-engine");
-if(typeof $$ === "undefined" || typeof $$.swarmEngine === "undefined"){
-    se.initialise();
-}
-
 function envSetup(powerCord, seed, identity, callback){
     let cord_identity;
     try{
