@@ -27,6 +27,11 @@ function envSetup(powerCord, seed, identity, callback){
 }
 
 module.exports.load = function(seed, identity, callback){
+    const se = require("swarm-engine");
+    if(typeof $$ === "undefined" || typeof $$.swarmEngine === "undefined"){
+        se.initialise();
+    }
+
     const envTypes = require("overwrite-require").constants;
     switch($$.environmentType){
         case envTypes.BROWSER_ENVIRONMENT_TYPE:
