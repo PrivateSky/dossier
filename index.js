@@ -44,6 +44,7 @@ module.exports.load = function(seed, identity, callback){
             const powerCord = new se.OuterThreadPowerCord(path.join(process.env.PSK_ROOT_INSTALATION_FOLDER, "psknode/bundles/threadBoot.js"), false, seed);
             return envSetup(powerCord, seed, identity, callback);
             break;
+        case envTypes.WEB_WORKER_ENVIRONMENT_TYPE:
         case envTypes.SERVICE_WORKER_ENVIRONMENT_TYPE:
         case envTypes.ISOLATE_ENVIRONMENT_TYPE:
         case envTypes.THREAD_ENVIRONMENT_TYPE:
