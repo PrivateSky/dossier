@@ -41,7 +41,7 @@ module.exports.load = function(seed, identity, callback){
         case envTypes.NODEJS_ENVIRONMENT_TYPE:
             const pathName = "path";
             const path = require(pathName);
-            const powerCord = new se.OuterThreadPowerCord(path.join(process.env.PSK_ROOT_INSTALATION_FOLDER, "psknode/bundles/threadBoot.js"), false, seed);
+            const powerCord = new se.OuterThreadPowerCord(path.join(process.env.PSK_ROOT_INSTALATION_FOLDER, "builds/output/threadBoot.js"), false, seed);
             return envSetup(powerCord, seed, identity, callback);
             break;
         case envTypes.WEB_WORKER_ENVIRONMENT_TYPE:
